@@ -14,7 +14,6 @@ import com.alibaba.dubbo.common.utils.ConfigUtils;
 
 /**
  * Main. (API, Static, ThreadSafe)
- * 
  * @author william.liangf
  */
 public class Main {

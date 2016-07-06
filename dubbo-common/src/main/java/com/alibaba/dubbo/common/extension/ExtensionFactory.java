@@ -12,7 +12,7 @@ public interface ExtensionFactory {
     /**
      * Get extension.
      * 
-     * @param type object type.
+     * @para m type object type.
      * @param name object name.
      * @return object instance.
      */
