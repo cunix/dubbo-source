@@ -161,7 +161,7 @@ public class ConfigUtils {
 	
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static String getProperty(String key, String defaultValue) {
-    	logger.info("// ==============================getProperty"+key+"#"+defaultValue);
+    	System.out.println("// ==============================getProperty"+key+"#"+defaultValue);
         String value = System.getProperty(key);
         if (value != null && value.length() > 0) {
             return value;
