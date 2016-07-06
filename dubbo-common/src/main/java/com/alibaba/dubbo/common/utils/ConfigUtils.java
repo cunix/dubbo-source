@@ -1,18 +1,3 @@
-/*
- * Copyright 1999-2011 Alibaba Group.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.alibaba.dubbo.common.utils;
 
 import java.io.FileInputStream;
@@ -115,8 +100,7 @@ public class ConfigUtils {
         return names;
 	}
 
-    private static Pattern VARIABLE_PATTERN = Pattern.compile(
-            "\\$\\s*\\{?\\s*([\\._0-9a-zA-Z]+)\\s*\\}?");
+    private static Pattern VARIABLE_PATTERN = Pattern.compile("\\$\\s*\\{?\\s*([\\._0-9a-zA-Z]+)\\s*\\}?");
     
 	public static String replaceProperty(String expression, Map<String, String> params) {
         if (expression == null || expression.length() == 0 || expression.indexOf('$') < 0) {
@@ -177,6 +161,7 @@ public class ConfigUtils {
 	
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static String getProperty(String key, String defaultValue) {
+    	logger.info("// ==============================getProperty"+key+"#"+defaultValue);
         String value = System.getProperty(key);
         if (value != null && value.length() > 0) {
             return value;
