@@ -52,3 +52,9 @@ public class ProtocolAdpative implements com.alibaba.dubbo.rpc.Protocol {
 		return extension.refer(arg0, arg1);
 	}
 }
+
+
+
+
+
+

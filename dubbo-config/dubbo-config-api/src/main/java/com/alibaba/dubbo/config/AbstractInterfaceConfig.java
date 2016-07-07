@@ -1,18 +1,3 @@
-/*
- * Copyright 1999-2011 Alibaba Group.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.alibaba.dubbo.config;
 
 import java.util.ArrayList;
@@ -102,6 +87,7 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
 	private String scope;
 
     protected void checkRegistry() {
+    	System.out.println("//checkRegistry invoke");
         // 兼容旧版本
         if (registries == null || registries.size() == 0) {
             String address = ConfigUtils.getProperty("dubbo.registry.address");
@@ -139,11 +125,9 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
             }
         }
         if (application == null) {
-            throw new IllegalStateException(
-                                            "No such application config! Please add <dubbo:application name=\"...\" /> to your spring config.");
+            throw new IllegalStateException("No such application config! Please add <dubbo:application name=\"...\" /> to your spring config.");
         }
         appendProperties(application);
-        
         String wait = ConfigUtils.getProperty(Constants.SHUTDOWN_WAIT_KEY);
         if (wait != null && wait.trim().length() > 0) {
             System.setProperty(Constants.SHUTDOWN_WAIT_KEY, wait.trim());
@@ -156,6 +140,7 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
     }
     
     protected List<URL> loadRegistries(boolean provider) {
+    	System.out.println("//loadRegistries invoke");
         checkRegistry();
         List<URL> registryList = new ArrayList<URL>();
         if (registries != null && registries.size() > 0) {

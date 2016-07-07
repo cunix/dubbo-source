@@ -79,6 +79,10 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
     
     @SuppressWarnings("unchecked")
     private static BeanDefinition parse(Element element, ParserContext parserContext, Class<?> beanClass, boolean required) {
+    	System.out.println("----------------------------解析标签------------------------------");
+    	System.out.println("element："+element.toString());
+    	System.out.println("beanClass："+beanClass);
+    	
         RootBeanDefinition beanDefinition = new RootBeanDefinition();
         beanDefinition.setBeanClass(beanClass);
         beanDefinition.setLazyInit(false);
@@ -152,9 +156,7 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
                     } catch (NoSuchMethodException e2) {
                     }
                 }
-                if (getter == null 
-                        || ! Modifier.isPublic(getter.getModifiers())
-                        || ! type.equals(getter.getReturnType())) {
+                if (getter == null || ! Modifier.isPublic(getter.getModifiers()) || ! type.equals(getter.getReturnType())) {
                     continue;
                 }
                 if ("parameters".equals(property)) {

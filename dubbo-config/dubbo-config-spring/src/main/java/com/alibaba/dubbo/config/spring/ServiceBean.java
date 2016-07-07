@@ -1,18 +1,3 @@
-/*
- * Copyright 1999-2011 Alibaba Group.
- *  
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *  
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.alibaba.dubbo.config.spring;
 
 import java.lang.reflect.Method;
@@ -43,10 +28,14 @@ import com.alibaba.dubbo.config.spring.extension.SpringExtensionFactory;
 
 /**
  * ServiceFactoryBean
- * 
  * @author william.liangf
  * @export
  */
+//ServiceBean处理继承dubbo自己的配置抽象类以外，还实现了一系列的spring接口用来参与到spring容器的启动以及bean的创建过程中去。由于spring的
+//实例化ServiceBean是单例模式的，在Spring的容器ApplicationContext的启动过程refresh过程中最后第二步会预先初始化单例的bean，在bean的初始
+//化过程会设置beanName,设置容器applicationContext,回调InitializingBean的afterPropertiesSet
+//最后一步finishRefresh会触发ContextRefreshedEvent事件，而ServiceBean实现了ApplicationListener接口监听了此事件，而在之前一步实例化的
+//ServiceBean注册了这个事件，所以ServiceBean的onApplicationEvent(ApplicationEventevent)方法被触发，在这个方法中触发了export方法来暴露服务。
 public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean, DisposableBean, ApplicationContextAware, ApplicationListener, BeanNameAware {
 
 	private static final long serialVersionUID = 213195494150089726L;
